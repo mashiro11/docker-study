@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run thiagoa2s/docker-study npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "sa-east-1"
+  app: "docker-study"
+  env: "DockerStudy-env"
+  bucket_name: "elasticbeanstalk-sa-east-1-670028911496"
+  buket_path: "docker-study"
+  on:
+    branch: master
+  access_key-id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
